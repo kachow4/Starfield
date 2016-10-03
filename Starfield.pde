@@ -1,17 +1,16 @@
 Particle[] kat;
 void setup()
 {
-	size(600, 600);
-	kat = new Particle[200];
+	size(800, 800);
+	kat = new Particle[500];
 	for (int i = 0; i < kat.length; i++)
 	{
 		kat[i] = new NormalParticle();
 		kat[0] = new OddballParticle();
 		kat[1] = new JumboParticle();
 	}
-	
-
 }
+
 void draw()
 {
 	background(0);
@@ -21,6 +20,7 @@ void draw()
 		kat[i].show();
 	}
 }
+
 class NormalParticle implements Particle
 {
 	double nX, nY, nSpeed, nAngle;
@@ -28,8 +28,8 @@ class NormalParticle implements Particle
 
 	NormalParticle()
 	{
-		nX = 300;
-		nY = 300;
+		nX = 400;
+		nY = 400;
 		nSpeed = Math.random()*10;
 		nAngle = Math.PI*2*Math.random();
 		nColor = color((int)(Math.random()*255), (int)(Math.random()*255), (int)(Math.random()*255));
@@ -72,15 +72,15 @@ class OddballParticle implements Particle
 
 	public void move()
 	{
-		oX = oX + Math.cos(oAngle)*oSpeed;
-		oY = oY + Math.sin(oAngle)*oSpeed;
+		oX = mouseX;
+		oY = mouseY;
 	}
 
 	public void show()
 	{
 		noStroke();
 		fill(oColor);
-		ellipse((float)oX, (float)oY, 50, 50);
+		ellipse((float)oX, (float)oY, 20, 50);
 
 	}
 }
@@ -94,4 +94,5 @@ class JumboParticle extends NormalParticle
 		ellipse( (float)nX, (float)nY, 50, 50);
 	}
 }
+
 
