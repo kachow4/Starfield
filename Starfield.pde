@@ -13,12 +13,15 @@ void setup()
 
 void draw()
 {
-	background(0);
+	fill(0, 0, 0, 100);
+	rect(-5, -5, 810, 810);
 	for (int i = 0; i < kat.length; i++)
 	{
 		kat[i].move();
 		kat[i].show();
 	}
+	fill(0, 255, 0);
+	rect(0, 730, 1000, 100);
 }
 
 class NormalParticle implements Particle
@@ -28,10 +31,10 @@ class NormalParticle implements Particle
 
 	NormalParticle()
 	{
-		nX = 400;
-		nY = 400;
+		nX = 0;
+		nY = 0;
 		nSpeed = Math.random()*5;
-		nAngle = Math.PI*2*Math.random();
+		nAngle = Math.PI/2*Math.random();
 		nColor = color((int)(Math.random()*255), (int)(Math.random()*255), (int)(Math.random()*255));
 	}
 
@@ -44,7 +47,7 @@ class NormalParticle implements Particle
 	public void show()
 	{
 		noStroke();
-		fill(nColor);
+		fill(255);
 		ellipse((float)nX, (float)nY, 2, 2);
 
 	}
@@ -63,8 +66,8 @@ class OddballParticle implements Particle
 
 	OddballParticle()
 	{	
-		oX = -10;
-		oY = 300;
+		oX = 10;
+		oY = 400;
 		oSpeed = Math.random()*10;
 		oAngle = Math.PI*2*Math.random();
 		oColor = color(0, 0, 255);
@@ -72,19 +75,29 @@ class OddballParticle implements Particle
 
 	public void move()
 	{
-		oX +=5;
-		//oY ++;
-		if (oX > 900)
-		{
-			oX = 0;
-		}
+		oX = oX + 2;
+		oY = 700;
 	}
 
 	public void show()
 	{
 		noStroke();
-		fill(oColor);
-		ellipse((float)oX, (float)oY, 100, 50);
+		fill(255);
+		ellipse((float)oX, (float)oY, 10, 10);
+		stroke(255);
+		line((float)(oX), (float)oY, (float)(oX), (float)(oY + 20));
+		line((float)(oX), (float)oY + 20, (float)(oX - 5), (float)(oY + 30));
+		line((float)(oX), (float)oY + 20, (float)(oX + 5), (float)(oY + 30));
+		line((float)(oX), (float)oY + 15, (float)(oX - 5), (float)(oY + 10));
+		line((float)(oX), (float)oY + 15, (float)(oX + 5), (float)(oY + 10));
+		if (oX < 350)
+		{
+		text("save me!", (float)oX + 10, (float)oY);
+		}
+		else 
+		{
+		text("AHHH!", (float)oX + 10, (float)oY);
+		}	
 
 	}
 }
@@ -94,11 +107,17 @@ class JumboParticle extends NormalParticle
 	void show()
 	{
 		noStroke();
-		fill(255, 0, 0);
-		ellipse( (float)nX, (float)nY, 15, 15);
+		fill(255);
+		ellipse( (float)nX, (float)nY, 20, 20);
 	}
 }
 
 void mousePressed()
 {	
+	for (int i = 0; i < kat.length; i++)
+	{
+		kat[i] = new NormalParticle();
+		kat[0] = new OddballParticle();
+		kat[1] = new JumboParticle();
+	}
 }
