@@ -90,7 +90,7 @@ class OddballParticle implements Particle
 		line((float)(oX), (float)oY + 20, (float)(oX + 5), (float)(oY + 30));
 		line((float)(oX), (float)oY + 15, (float)(oX - 5), (float)(oY + 10));
 		line((float)(oX), (float)oY + 15, (float)(oX + 5), (float)(oY + 10));
-		if (oX < 350)
+		if (oX < 300)
 		{
 		text("save me!", (float)oX + 10, (float)oY);
 		}
